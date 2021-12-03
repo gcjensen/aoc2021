@@ -25,7 +25,7 @@ public abstract class Day<T> {
 
     abstract public List<T> parseInput(Stream<String> input);
 
-    abstract public Object solvePart1(List<T> input);
+    abstract public Object solvePart1(List<T> input) throws NoSolutionException;
 
-    abstract public Object solvePart2(List<T> input);
+    abstract public Object solvePart2(List<T> input) throws NoSolutionException;
 }

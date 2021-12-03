@@ -2,7 +2,7 @@ package sh.gcj.aoc.day2;
 
 import org.junit.Test;
 import sh.gcj.aoc.Day;
-import sh.gcj.aoc.day1.Day2;
+import sh.gcj.aoc.NoSolutionException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,12 +22,12 @@ public class Day2Test {
     );
     private final List<String> actualInput = day2.parseInput();
 
-    @Test public void testPart1() {
+    @Test public void testPart1() throws NoSolutionException {
         assertEquals(150, day2.solvePart1(testInput));
         assertEquals(2272262, day2.solvePart1(actualInput));
     }
 
-    @Test public void testPart2() {
+    @Test public void testPart2() throws NoSolutionException {
         assertEquals(900, day2.solvePart2(testInput));
         assertEquals(2134882034, day2.solvePart2(actualInput));
     }

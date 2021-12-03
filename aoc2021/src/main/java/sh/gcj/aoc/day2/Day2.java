@@ -1,11 +1,10 @@
-package sh.gcj.aoc.day1;
+package sh.gcj.aoc.day2;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import sh.gcj.aoc.Day;
-import sh.gcj.aoc.day2.Submarine;
 
 public class Day2 extends Day<String> {
 
