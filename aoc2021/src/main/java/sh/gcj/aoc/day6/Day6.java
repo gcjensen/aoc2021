@@ -25,6 +25,7 @@ public class Day6 extends Day<Integer> {
         return stream.map(Integer::parseInt).collect(Collectors.toList());
     }
 
+    @Override
     public Long solvePart1(List<Integer> input) throws NoSolutionException {
         int days = 80;
         int spawnInterval = 7;

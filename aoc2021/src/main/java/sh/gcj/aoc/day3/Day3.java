@@ -19,6 +19,7 @@ public class Day3 extends Day<String> {
         return input.collect(Collectors.toList());
     }
 
+    @Override
     public Integer solvePart1(List<String> input) {
         return checkPowerConsumption(input);
     }

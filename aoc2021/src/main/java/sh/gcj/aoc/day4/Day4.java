@@ -18,6 +18,7 @@ public class Day4 extends Day<String> {
         return input.collect(Collectors.toList());
     }
 
+    @Override
     public Integer solvePart1(List<String> input) throws NoSolutionException {
         Bingo game = Bingo.parseGame(input);
         return game.play();

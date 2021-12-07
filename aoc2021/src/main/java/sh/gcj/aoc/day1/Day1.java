@@ -17,6 +17,7 @@ public class Day1 extends Day<Integer> {
         return input.map(Integer::parseInt).collect(Collectors.toList());
     }
 
+    @Override
     public Integer solvePart1(List<Integer> input) {
         return countIncreases(input, 1);
     }

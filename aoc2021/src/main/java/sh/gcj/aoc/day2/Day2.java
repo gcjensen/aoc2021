@@ -17,6 +17,7 @@ public class Day2 extends Day<String> {
         return input.collect(Collectors.toList());
     }
 
+    @Override
     public Integer solvePart1(List<String> input) {
         Submarine sub = new Submarine(input);
         sub.drive(false);

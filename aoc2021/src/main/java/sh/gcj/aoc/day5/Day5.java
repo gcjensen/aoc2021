@@ -19,6 +19,7 @@ public class Day5 extends Day<Line> {
         return input.map(Line::parse).collect(Collectors.toList());
     }
 
+    @Override
     public Integer solvePart1(List<Line> lines) throws NoSolutionException {
         lines = lines.stream().filter(l -> l.isVertical() || l.isHorizontal()).collect(Collectors.toList());
 
