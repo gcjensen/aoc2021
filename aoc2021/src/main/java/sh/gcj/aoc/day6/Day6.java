@@ -2,11 +2,8 @@ package sh.gcj.aoc.day6;
 
 import sh.gcj.aoc.Day;
 import sh.gcj.aoc.NoSolutionException;
-import sh.gcj.aoc.day5.Grid;
-import sh.gcj.aoc.day5.Line;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,6 +52,6 @@ public class Day6 extends Day<Integer> {
         }
 
         // The sum of the list items is now the total number of fish
-        return ageBuckets.stream().reduce(Long::sum).orElseThrow(NoSolutionException::new);
+        return ageBuckets.stream().reduce(0L, Long::sum);
     }
 }

@@ -4,7 +4,6 @@ import org.junit.Test;
 import sh.gcj.aoc.Day;
 import sh.gcj.aoc.NoSolutionException;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
