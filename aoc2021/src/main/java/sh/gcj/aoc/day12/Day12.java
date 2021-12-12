@@ -26,35 +26,47 @@ public class Day12 extends Day<Pair<String, String>> {
 
     @Override
     public Integer solvePart1(List<Pair<String, String>> input) throws NoSolutionException {
-        Cave start = buildCaveSystem(input);
+        var start = buildCaveSystem(input);
         // In part 1 there is no extra visit to a small cave allowed, so disable it by setting used to true immediately
-        return dfs(start, new ArrayList<>(), 0, true);
+        return dfs(start, new ArrayList<>(), true, new HashMap<>());
     }
 
     @Override
     public Integer solvePart2(List<Pair<String, String>> input) throws NoSolutionException {
-        Cave start = buildCaveSystem(input);
-        return dfs(start, new ArrayList<>(), 0, false);
+        var start = buildCaveSystem(input);
+        return dfs(start, new ArrayList<>(), false, new HashMap<>());
     }
 
-    private Integer dfs(Cave cave, List<Cave> visited, Integer paths, Boolean extraSmallCaveVisited) {
-        if (cave.isEnd()) {
-            return ++paths;
+    private Integer dfs(Cave cave, List<Cave> visited, Boolean extraSmallCaveVisited, Map<CacheKey, Integer> cache) {
+        // Create a key to memoise the path count for this combination of cave id, connections and extraSmallCaveVisited
+        var cacheKey = new CacheKey(cave.id, visited, extraSmallCaveVisited);
+
+        var cachedPathCount = cache.get(cacheKey);
+        if (cachedPathCount != null) {
+            return cachedPathCount;
         }
 
+        if (cave.isEnd()) {
+            return 1;
+        }
+
+        var paths = 0;
+
         visited.add(cave);
-        for (Cave c : cave.getConnectedCaves()) {
+        for (var c : cave.connectedCaves) {
             // Big caves can be visited any number of times
             if (c.isBig() || !visited.contains(c)) {
-                paths = dfs(c, visited, paths, extraSmallCaveVisited);
+                paths += dfs(c, visited, extraSmallCaveVisited, cache);
             } else if (!c.isStart() && !c.isEnd() && !extraSmallCaveVisited) {
                // Use our extra small cave allowance
-               paths = dfs(c, visited, paths, true);
+               paths += dfs(c, visited, true, cache);
             }
         }
 
         // We've done our dfs from this cave, so now remove so it can be used in another route
         visited.remove(cave);
+
+        cache.put(cacheKey, paths);
 
         return paths;
     }
@@ -64,10 +76,10 @@ public class Day12 extends Day<Pair<String, String>> {
      * from there
      */
     private Cave buildCaveSystem(List<Pair<String, String>> input) {
-        Map<String, Cave> caves = new HashMap<>();
+        var caves = new HashMap<String, Cave>();
         for (Pair<String, String> pair : input) {
-            Cave fstCave = caves.getOrDefault(pair.getKey(), new Cave(pair.getKey()));
-            Cave sndCave = caves.getOrDefault(pair.getValue(), new Cave(pair.getValue()));
+            var fstCave = caves.getOrDefault(pair.getKey(), new Cave(pair.getKey()));
+            var sndCave = caves.getOrDefault(pair.getValue(), new Cave(pair.getValue()));
             fstCave.connectTo(sndCave);
             sndCave.connectTo(fstCave);
 
@@ -78,12 +90,14 @@ public class Day12 extends Day<Pair<String, String>> {
         return caves.get(Cave.START);
     }
 
+    private record CacheKey (String cave, List<Cave> visited, Boolean extraSmallCaveVisited) {}
+
     private static class Cave {
         final static String START = "start";
         final static String END = "end";
 
-        private final String id;
-        private final Set<Cave> connectedCaves;
+        final String id;
+        final Set<Cave> connectedCaves;
 
         public Cave(String id) {
             this.id = id;
@@ -92,10 +106,6 @@ public class Day12 extends Day<Pair<String, String>> {
 
         public void connectTo(Cave c) {
             connectedCaves.add(c);
-        }
-
-        public Set<Cave> getConnectedCaves() {
-            return connectedCaves;
         }
 
         public boolean isStart() {

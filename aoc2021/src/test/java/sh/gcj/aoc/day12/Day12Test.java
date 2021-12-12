@@ -5,7 +5,6 @@ import org.junit.Test;
 import sh.gcj.aoc.Day;
 import sh.gcj.aoc.NoSolutionException;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -13,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class Day12Test {
     Day<Pair<String, String>> day12 = new Day12();
 
-    private final List<String> testInput = Arrays.asList(
+    private final List<String> testInput = List.of(
         "start-A",
         "start-b",
         "A-c",
@@ -23,7 +22,7 @@ public class Day12Test {
         "b-end"
     );
 
-    private final List<String> testInput2 = Arrays.asList(
+    private final List<String> testInput2 = List.of(
         "dc-end",
         "HN-start",
         "start-kj",
@@ -40,7 +39,7 @@ public class Day12Test {
 
     @Test
     public void testPart1() throws NoSolutionException {
-        List<Pair<String, String>> input = day12.parseInput(testInput.stream());
+        var input = day12.parseInput(testInput.stream());
         assertEquals(10, day12.solvePart1(input));
 
         input = day12.parseInput(testInput2.stream());
@@ -51,7 +50,7 @@ public class Day12Test {
 
     @Test
     public void testPart2() throws NoSolutionException {
-        List<Pair<String, String>> input = day12.parseInput(testInput.stream());
+        var input = day12.parseInput(testInput.stream());
         assertEquals(36, day12.solvePart2(input));
 
         input = day12.parseInput(testInput2.stream());
