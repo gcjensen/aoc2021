@@ -1,6 +1,5 @@
 package sh.gcj.aoc.day10;
 
-import com.google.common.collect.ImmutableMap;
 import sh.gcj.aoc.Day;
 import sh.gcj.aoc.NoSolutionException;
 
@@ -17,21 +16,21 @@ public class Day10 extends Day<String> {
         super(10);
     }
 
-    private final Map<Character, Character> PAIRS = ImmutableMap.of(
+    private final Map<Character, Character> PAIRS = Map.of(
         '(', ')',
         '[', ']',
         '{', '}',
         '<', '>'
     );
 
-    final Map<Character, Integer> ERROR_SCORES = ImmutableMap.of(
+    final Map<Character, Integer> ERROR_SCORES = Map.of(
         ')', 3,
         ']', 57,
         '}', 1197,
         '>', 25137
     );
 
-    final Map<Character, Integer> AUTOCOMPLETE_SCORES = ImmutableMap.of(
+    final Map<Character, Integer> AUTOCOMPLETE_SCORES = Map.of(
         ')', 1,
         ']', 2,
         '}', 3,

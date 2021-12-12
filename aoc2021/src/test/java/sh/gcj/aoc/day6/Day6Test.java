@@ -4,7 +4,6 @@ import org.junit.Test;
 import sh.gcj.aoc.Day;
 import sh.gcj.aoc.NoSolutionException;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -12,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class Day6Test {
     Day<Integer> day6 = new Day6();
 
-    private final List<String> testInput = Collections.singletonList("3,4,3,1,2");
+    private final List<String> testInput = List.of("3,4,3,1,2");
     private final List<Integer> actualInput = day6.parseInput();
 
     @Test public void testPart1() throws NoSolutionException {

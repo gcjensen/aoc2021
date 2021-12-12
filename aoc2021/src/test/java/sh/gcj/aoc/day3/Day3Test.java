@@ -4,7 +4,6 @@ import org.junit.Test;
 import sh.gcj.aoc.Day;
 import sh.gcj.aoc.NoSolutionException;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -12,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class Day3Test {
     Day<String> day3 = new Day3();
 
-    private final List<String> testInput = Arrays.asList(
+    private final List<String> testInput = List.of(
         "00100",
         "11110",
         "10110",

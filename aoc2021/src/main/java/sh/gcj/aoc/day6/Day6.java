@@ -40,7 +40,7 @@ public class Day6 extends Day<Integer> {
 
     private Long simulateFish(List<Integer> fishAges, int days, int spawnInterval) throws NoSolutionException {
         // Use age buckets to keep a count of the number of fish at that age
-        LinkedList<Long> ageBuckets = new LinkedList<>(Arrays.asList(0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L));
+        LinkedList<Long> ageBuckets = new LinkedList<>(List.of(0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L));
         fishAges.forEach(age -> ageBuckets.set(age, ageBuckets.get(age) + 1));
 
         // Each day, get the number of fish that are spawning new fish (the first item in the list), and add that number

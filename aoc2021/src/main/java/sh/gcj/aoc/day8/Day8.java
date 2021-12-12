@@ -1,6 +1,5 @@
 package sh.gcj.aoc.day8;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import sh.gcj.aoc.Day;
 import sh.gcj.aoc.NoSolutionException;
@@ -21,18 +20,18 @@ public class Day8 extends Day<Entry> {
         super(8);
     }
 
-    List<String> SEGMENTS = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
-    Map<List<String>, Integer> DIGITS = ImmutableMap.of(
-        Arrays.asList("a", "b", "c", "e", "f", "g"), 0,
-        Arrays.asList("c", "f"), 1,
-        Arrays.asList("a", "c", "d", "e", "g"), 2,
-        Arrays.asList("a", "c", "d", "f", "g"), 3,
-        Arrays.asList("b", "c", "d", "f"), 4,
-        Arrays.asList("a", "b", "d", "f", "g"), 5,
-        Arrays.asList("a", "b", "d", "e", "f", "g"), 6,
-        Arrays.asList("a", "c", "f"), 7,
-        Arrays.asList("a", "b", "c", "d", "e", "f", "g"), 8,
-        Arrays.asList("a", "b", "c", "d", "f", "g"), 9
+    List<String> SEGMENTS = List.of("a", "b", "c", "d", "e", "f", "g");
+    Map<List<String>, Integer> DIGITS = Map.of(
+        List.of("a", "b", "c", "e", "f", "g"), 0,
+        List.of("c", "f"), 1,
+        List.of("a", "c", "d", "e", "g"), 2,
+        List.of("a", "c", "d", "f", "g"), 3,
+        List.of("b", "c", "d", "f"), 4,
+        List.of("a", "b", "d", "f", "g"), 5,
+        List.of("a", "b", "d", "e", "f", "g"), 6,
+        List.of("a", "c", "f"), 7,
+        List.of("a", "b", "c", "d", "e", "f", "g"), 8,
+        List.of("a", "b", "c", "d", "f", "g"), 9
     );
 
     @Override
@@ -40,11 +39,11 @@ public class Day8 extends Day<Entry> {
         return input.map(entry -> {
             String[] entryParts =  entry.split(" \\| ");
             List<List<String>> patterns = Arrays.stream(entryParts[0].split(" "))
-                .map(seg -> Arrays.asList(seg.split("")))
+                .map(seg -> List.of(seg.split("")))
                 .collect(Collectors.toList());
 
             List<List<String>> output = Arrays.stream(entryParts[1].split(" "))
-                .map(seg -> Arrays.asList(seg.split("")))
+                .map(seg -> List.of(seg.split("")))
                 .collect(Collectors.toList());
 
             return new Entry(patterns, output);

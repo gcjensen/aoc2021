@@ -72,7 +72,7 @@ public class Day11 extends Day<int[]> {
     private void flash(int[][] octopuses, Set<Point> flashes, Point octo) {
         flashes.add(octo);
 
-        List<Point> adjacentOctos = Arrays.asList(
+        List<Point> adjacentOctos = List.of(
             new Point(octo.x, octo.y - 1),
             new Point(octo.x + 1, octo.y - 1),
             new Point(octo.x + 1, octo.y),
