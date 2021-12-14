@@ -36,6 +36,7 @@ public class Day14 extends Day<String> {
         var rules = new HashMap<String, String>();
         input.stream().skip(2).forEach(r -> rules.put(r.split(" -> ")[0], r.split(" -> ")[1]));
 
+        // We'll maintain counts for each individual element and each pair
         BigMultiset<String> elementCounts = BigMultiset.create();
         BigMultiset<String> pairCounts = BigMultiset.create();
 
@@ -47,6 +48,9 @@ public class Day14 extends Day<String> {
         elementCounts.add(template.get(template.size() - 1));
 
         for (var s = 0; s < steps; s++) {
+            // For each pair, we need to decrement the count (because we'll be splitting the pair to insert a new
+            // element), update the count for whatever the new element is based on the pair, and then also update the
+            // counts for both of the new pairs we're creating
             for (var pairCount : pairCounts.copy().entrySet()) {
                 var pair = pairCount.getKey();
                 var count = pairCount.getValue();
